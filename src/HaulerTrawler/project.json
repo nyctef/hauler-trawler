@@ -1,23 +1,25 @@
 {
   "version": "1.0.0-*",
   "description": "HaulerTrawler Console Application",
-  "authors": [ "" ],
-  "tags": [ "" ],
+  "authors": [
+    ""
+  ],
+  "tags": [
+    ""
+  ],
   "projectUrl": "",
   "licenseUrl": "",
   "tooling": {
     "defaultNamespace": "HaulerTrawler"
   },
-
   "dependencies": {
+    "Newtonsoft.Json": "8.0.1-beta3"
   },
-
   "commands": {
     "HaulerTrawler": "HaulerTrawler"
   },
-
   "frameworks": {
-    "dnx451": { },
+    "dnx451": {},
     "dnxcore50": {
       "dependencies": {
         "Microsoft.CSharp": "4.0.1-beta-23516",
