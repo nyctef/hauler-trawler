@@ -1,4 +1,4 @@
-nmap <leader>t :wa \| !dnx test<cr>
+nmap <leader>t :wa \| !dnx --project tests\HaulerTrawler.Tests\project.json test -notrait "category=slow"<cr>
 nmap <leader>r :wa \| !dnu restore<cr>
 nmap <leader>b :wa \| !dnu build<cr>
 "if has("win32")
