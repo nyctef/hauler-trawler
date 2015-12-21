@@ -1,0 +1,1 @@
+nmap <leader>t :wa \| !dnx test<cr>

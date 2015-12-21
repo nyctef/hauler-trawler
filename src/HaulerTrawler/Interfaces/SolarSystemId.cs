@@ -7,8 +7,9 @@ namespace HaulerTrawler.Interfaces
 {
     public class SolarSystemId
     {
-        public SolarSystemId()
+        public SolarSystemId(int id, string name)
         {
+            NameString = name;
         }
 
         public string NameString { get; }

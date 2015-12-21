@@ -7,8 +7,9 @@ namespace HaulerTrawler.Interfaces
 {
     public class PriceInfo
     {
-        public PriceInfo()
+        public PriceInfo(decimal amount)
         {
+            IskString = amount + "ISK";
         }
 
         // TODO: we might have multiple prices here
