@@ -1,1 +1,2 @@
 nmap <leader>t :wa \| !dnx test<cr>
+set shell=powershell\ -ExecutionPolicy\ Unrestricted
