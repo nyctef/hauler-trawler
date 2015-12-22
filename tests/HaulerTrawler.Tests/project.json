@@ -20,7 +20,8 @@
     "Moq": "4.2.1510.2205"
   },
   "commands": {
-    "test": "xunit.runner.dnx"
+    "test": "xunit.runner.dnx",
+    "fasttest": "xunit.runner.dnx -notrait \"category=slow\"" 
   },
   "frameworks": {
     "dnx451": {}
