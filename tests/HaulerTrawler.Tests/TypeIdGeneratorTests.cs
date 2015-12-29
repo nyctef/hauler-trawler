@@ -29,5 +29,20 @@ namespace HaulerTrawler.Tests
 
            result.ShouldBeEquivalentTo(new TypeId(123, "foo"));
         }
+
+        [Fact]
+        public void CachesListOfTypeIds() 
+        {
+           var getMarketableTypeIdsList = new Mock<IGetMarketableTypeIdsList>();
+           var randomChooser = new Mock<IRandomChooser>();
+           var subject = new TypeIdGenerator(getMarketableTypeIdsList.Object,
+                   randomChooser.Object);
+
+           subject.GetNext();
+           subject.GetNext();
+           subject.GetNext();
+
+           getMarketableTypeIdsList.Verify(x => x.Get(), Times.Once);
+        }
     }
 }
