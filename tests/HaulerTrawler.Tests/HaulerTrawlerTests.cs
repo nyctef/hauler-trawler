@@ -34,7 +34,7 @@ namespace HaulerTrawler.Tests
 
             subject.DoTheThing();
 
-            notifier.Verify(x => x.Notify("Trade found! Widget IIs (123ISK Amarr -> 456ISK Jita)"));
+            notifier.Verify(x => x.Notify("Trade found! Widget IIs (123.00 ISK Amarr -> 456.00 ISK Jita)"));
         }
     }
 }

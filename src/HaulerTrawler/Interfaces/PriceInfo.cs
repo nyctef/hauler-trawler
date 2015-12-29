@@ -9,10 +9,15 @@ namespace HaulerTrawler.Interfaces
     {
         public PriceInfo(decimal amount)
         {
-            IskString = amount + "ISK";
+            IskString = FormatISK(amount);
         }
 
         // TODO: we might have multiple prices here
         public string IskString { get; }
+
+        private static string FormatISK(decimal amount)
+        {
+            return string.Format("{0:F2} ISK", amount);
+        }
     }
 }
