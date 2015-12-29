@@ -19,7 +19,7 @@ namespace HaulerTrawler.Tests
         {
             var subject = new GetMarketableTypeIdsList();
             var result = subject.Get();
-            result.Should().NotBeEmpty();
+            result.Count().Should().BeGreaterThan(12000, "there are several pages of types to read");
         }
     }
 }
