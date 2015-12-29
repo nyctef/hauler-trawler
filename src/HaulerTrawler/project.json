@@ -13,7 +13,8 @@
     "defaultNamespace": "HaulerTrawler"
   },
   "dependencies": {
-    "Newtonsoft.Json": "8.0.1-beta3"
+    "Newtonsoft.Json": "8.0.1-beta3",
+    "System.Net.Http": "4.0.1-beta-23516"
   },
   "commands": {
     "HaulerTrawler": "HaulerTrawler"
