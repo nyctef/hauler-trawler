@@ -15,11 +15,18 @@ namespace HaulerTrawler.Eve
             var crestBaseUrl = @"https://public-crest.eveonline.com/";
             dynamic crestBase = GetJson(crestBaseUrl);
             var marketTypesUrl = (string)crestBase.marketTypes.href;
-            dynamic marketTypes = GetJson(marketTypesUrl);
             var result = new List<TypeId>();
-            foreach (var item in marketTypes.items)
+            while (true)
             {
-                result.Add(new TypeId((int)item.type.id, (string)item.type.name));
+                Console.WriteLine("Fetching "+marketTypesUrl);
+                dynamic marketTypes = GetJson(marketTypesUrl);
+                foreach (var item in marketTypes.items)
+                {
+                    result.Add(new TypeId((int)item.type.id, (string)item.type.name));
+                }
+                var next = marketTypes.next;
+                if (next == null) { break; }
+                marketTypesUrl = next.href;
             }
             return result;
         }
