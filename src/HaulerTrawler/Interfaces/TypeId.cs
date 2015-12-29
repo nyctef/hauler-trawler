@@ -10,10 +10,10 @@ namespace HaulerTrawler.Interfaces
         public TypeId(int id, string name)
         {
             Id = id;
-            NameString = name;
+            Name = name;
         }
 
         public int Id { get; }
-        public string NameString { get; }
+        public string Name { get; }
     }
 }

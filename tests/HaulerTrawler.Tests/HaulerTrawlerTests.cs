@@ -20,7 +20,7 @@ namespace HaulerTrawler.Tests
             var priceChecker = new Mock<IPriceChecker>();
             priceChecker.Setup(x => x.GetPrice(It.IsAny<TypeId>(), It.IsAny<SolarSystemId>()))
                 .Returns<TypeId, SolarSystemId>((type, ssId) => {
-                        return ssId.NameString == "Amarr" ? new PriceInfo(123) : new PriceInfo(456);
+                        return ssId.Name == "Amarr" ? new PriceInfo(123) : new PriceInfo(456);
                         });
             var tradeAnalyzer = new Mock<ITradeAnalyzer>();
             tradeAnalyzer.Setup(x => x.IsGoodTrade(It.IsAny<PriceInfo>(), It.IsAny<PriceInfo>(), It.IsAny<int>()))
@@ -29,7 +29,8 @@ namespace HaulerTrawler.Tests
             solarSystemFactory.Setup(x => x.GetSolarSystem(It.IsAny<string>()))
                     .Returns<string>(name => new SolarSystemId(1337, name));
             var notifier = new Mock<INotifier>();
-            var subject = new HaulerTrawler(typeIdGenerator.Object, priceChecker.Object, solarSystemFactory.Object, tradeAnalyzer.Object, notifier.Object);
+            var routeFinder = new Mock<ISolarSystemRouteFinder>();
+            var subject = new HaulerTrawler(typeIdGenerator.Object, priceChecker.Object, solarSystemFactory.Object, tradeAnalyzer.Object, notifier.Object, routeFinder.Object);
 
             subject.DoTheThing();
 

@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace HaulerTrawler.Interfaces
 {
-    public interface ISolarSystemFactory
+    public interface IGetSolarSystemIds
     {
-        SolarSystemId GetSolarSystem(string name);
+        IEnumerable<SolarSystemId> Get();
     }
 }

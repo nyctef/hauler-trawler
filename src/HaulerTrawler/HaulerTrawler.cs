@@ -13,14 +13,16 @@ namespace HaulerTrawler
         private readonly ITradeAnalyzer m_TradeAnalyzer;
         private readonly INotifier m_Notifier;
         private readonly ISolarSystemFactory m_SolarSystemFactory;
+        private readonly ISolarSystemRouteFinder m_SolarSystemRouteFinder;
 
-        public HaulerTrawler(ITypeIdGenerator typeIdGenerator, IPriceChecker priceChecker, ISolarSystemFactory solarSystemFactory, ITradeAnalyzer tradeAnalyzer, INotifier notifier)
+        public HaulerTrawler(ITypeIdGenerator typeIdGenerator, IPriceChecker priceChecker, ISolarSystemFactory solarSystemFactory, ITradeAnalyzer tradeAnalyzer, INotifier notifier, ISolarSystemRouteFinder solarSystemRouteFinder)
         {
             m_TypeIdGenerator = typeIdGenerator;
             m_PriceChecker = priceChecker;
             m_TradeAnalyzer = tradeAnalyzer;
             m_Notifier = notifier;
             m_SolarSystemFactory = solarSystemFactory;
+            m_SolarSystemRouteFinder = solarSystemRouteFinder;
         }
 
         public void DoTheThing()
@@ -30,16 +32,16 @@ namespace HaulerTrawler
             var jita = m_SolarSystemFactory.GetSolarSystem("Jita");
             var amarrPrice = m_PriceChecker.GetPrice(nextTypeId, amarr);
             var jitaPrice = m_PriceChecker.GetPrice(nextTypeId, jita);
-            var numJumps = m_SolarSystemFactory.GetNumberOfJumps(amarr, jita);
+            var numJumps = m_SolarSystemRouteFinder.GetNumberOfJumps(amarr, jita);
             var analyzerResult = m_TradeAnalyzer.IsGoodTrade(amarrPrice, jitaPrice, numJumps);
             if (analyzerResult.IsGood)
             {
                 m_Notifier.Notify(string.Format("Trade found! {0}s ({1} {2} -> {3} {4})",
-                            nextTypeId.NameString,
+                            nextTypeId.Name,
                             amarrPrice.IskString,
-                            amarr.NameString,
+                            amarr.Name,
                             jitaPrice.IskString,
-                            jita.NameString));
+                            jita.Name));
             }
         }
     }
