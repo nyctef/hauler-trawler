@@ -18,8 +18,8 @@ namespace HaulerTrawler.Tests
             var tradeGenerator = new Mock<ITradeGenerator>();
             tradeGenerator.Setup(x => x.GetNext())
                 .Returns(new TradeInfo(new TypeId(1234, "Widget II"),
-                            new PriceInfo(123),
-                            new PriceInfo(456),
+                            new PriceInfo(120, 123),
+                            new PriceInfo(450, 456),
                             new SolarSystemId(123, "Amarr"),
                             new SolarSystemId(456, "Jita"),
                             12));

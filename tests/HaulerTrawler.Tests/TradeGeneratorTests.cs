@@ -21,7 +21,7 @@ namespace HaulerTrawler.Tests
             var priceChecker = new Mock<IPriceChecker>();
             priceChecker.Setup(x => x.GetPrice(It.IsAny<TypeId>(), It.IsAny<SolarSystemId>()))
                 .Returns<TypeId, SolarSystemId>((type, ssId) => {
-                        return ssId.Name == "Amarr" ? new PriceInfo(123) : new PriceInfo(456);
+                        return ssId.Name == "Amarr" ? new PriceInfo(120, 123) : new PriceInfo(450, 456);
                         });
             var solarSystemFactory = new Mock<ISolarSystemFactory>();
             solarSystemFactory.Setup(x => x.GetSolarSystem(It.IsAny<string>()))

@@ -7,13 +7,16 @@ namespace HaulerTrawler.Interfaces
 {
     public class PriceInfo
     {
-        public PriceInfo(decimal amount)
+        public PriceInfo(decimal buyMax, decimal sellMin)
         {
-            IskString = FormatISK(amount);
+            BuyMax = buyMax;
+            SellMin = sellMin;
+            IskString = FormatISK(sellMin);
         }
 
-        // TODO: we might have multiple prices here
         public string IskString { get; }
+        public decimal BuyMax { get; }
+        public decimal SellMin { get; }
 
         private static string FormatISK(decimal amount)
         {
