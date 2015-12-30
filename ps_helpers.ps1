@@ -1,15 +1,16 @@
+# TODO: pull default namespace from project.json
+
 # Create class + namespace with folder if necessary
-function makecsfile($name, $template) {
-    $dirPath = "$PSScriptRoot/src/HaulerTrawler"
+function makecsfile($name, $baseDir, $baseNamespace, $template) {
+    $dirPath = $baseDir
     $className = $name
-    # TODO: pull default namespace from project.json
-    $namespace = 'HaulerTrawler'
+    $namespace = $baseNamespace
 
     $splitName = $name.split(@('.'))
     if ($splitName.length -gt 1) {
         $dirName = "$([IO.Path]::Combine($splitName[0..($splitName.Length-2)]))"
         $className = "$($splitName[-1])"
-        $namespace = $namespace + "." + [string]::join('.', $splitName, 0, $splitName.Length-1)
+        $namespace = $baseNamespace + "." + [string]::join('.', $splitName, 0, $splitName.Length-1)
         $dirPath = "$PSScriptRoot/src/HaulerTrawler/$dirName"
         write-output "making sure $dirPath exists"
         mkdir -force $dirPath | out-null
@@ -27,7 +28,7 @@ function makecsfile($name, $template) {
 }
 
 function makeclass($name) {
-    makecsfile $name 'using System;
+    makecsfile $name "$PSScriptRoot/src/HaulerTrawler" 'HaulerTrawler' 'using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -49,7 +50,7 @@ namespace $namespace
 
 
 function makeinterface($name) {
-    makecsfile $name 'using System;
+    makecsfile $name "$PSScriptRoot/src/HaulerTrawler" 'HaulerTrawler' 'using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -61,6 +62,32 @@ namespace $namespace
 {
     public interface $className
     {
+    }
+}
+'
+}
+
+function maketest($name) {
+    makecsfile $name "$PSScriptRoot/tests/HaulerTrawler.Tests" 'HaulerTrawler.Tests' 'using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Xunit;
+using Moq;
+using HaulerTrawler.Interfaces;
+using HaulerTrawler.Eve;
+using HaulerTrawler.Utils;
+using FluentAssertions;
+
+namespace $namespace
+{
+    public class $className
+    {
+        [Fact]
+        public void ShouldDoAThing_AndThenDoAnotherThing() 
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 '
