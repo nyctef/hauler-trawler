@@ -20,9 +20,10 @@ function makecsfile($name, $baseDir, $baseNamespace, $template) {
     write-output "switching to $dirPath"
     push-location $dirPath
 
-    write-output "writing out to $($className).cs"
-    $ExecutionContext.InvokeCommand.ExpandString($template) |
-        out-file "$($className).cs"
+    write-output "writing out to $dirPath/$className.cs"
+    $contents = $ExecutionContext.InvokeCommand.ExpandString($template)
+    # use WriteAllText instead of out-file to get a sensible encoding (utf8 no BOM)
+    [io.file]::WriteAllText("$dirPath/$className.cs", $contents)
 
     pop-location
 }
