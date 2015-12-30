@@ -24,7 +24,7 @@ namespace HaulerTrawler
                             ),
                         new SolarSystemRouteFinder()
                         ),
-                    null, // new TradeAnalyzer(),
+                    new TradeAnalyzer(),
                     null // new Notifier()
                     );
 
