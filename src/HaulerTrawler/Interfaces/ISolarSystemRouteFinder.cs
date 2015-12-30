@@ -8,7 +8,6 @@ namespace HaulerTrawler.Interfaces
 {
     public interface ISolarSystemRouteFinder
     {
-        // TODO move this onto some route finder interface
         int GetNumberOfJumps(SolarSystemId start, SolarSystemId end);
     }
 }
