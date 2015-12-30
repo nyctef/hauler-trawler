@@ -25,7 +25,7 @@ namespace HaulerTrawler
                         new SolarSystemRouteFinder()
                         ),
                     new TradeAnalyzer(),
-                    null // new Notifier()
+                    new Notifier()
                     );
 
             prog.DoTheThing();
