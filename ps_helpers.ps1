@@ -1,5 +1,5 @@
 # Create class + namespace with folder if necessary
-function makeclass($name) {
+function makecsfile($name, $template) {
     $dirPath = "$PSScriptRoot/src/HaulerTrawler"
     $className = $name
     # TODO: pull default namespace from project.json
@@ -20,7 +20,14 @@ function makeclass($name) {
     push-location $dirPath
 
     write-output "writing out to $($className).cs"
-    "using System;
+    $ExecutionContext.InvokeCommand.ExpandString($template) |
+        out-file "$($className).cs"
+
+    pop-location
+}
+
+function makeclass($name) {
+    makecsfile $name 'using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -37,8 +44,6 @@ namespace $namespace
         }
     }
 }
-" | out-file "$($className).cs"
-
-    pop-location
+'
 }
 
