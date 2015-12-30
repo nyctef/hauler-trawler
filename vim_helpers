@@ -1,9 +1,3 @@
 nmap <leader>t :wa \| !dnx --project tests\HaulerTrawler.Tests\project.json fasttest<cr>
 nmap <leader>r :wa \| !dnu restore<cr>
 nmap <leader>b :wa \| !dnu build .\src\HaulerTrawler\ .\tests\HaulerTrawler.Tests\ --quiet<cr>
-"if has("win32")
-"    set shell=cmd.exe
-"    set shellcmdflag=/c\ powershell.exe\ -NoLogo\ -NoProfile\ -NonInteractive\ -ExecutionPolicy\ RemoteSigned
-"    set shellpipe=|
-"    set shellredir=>
-"endif
