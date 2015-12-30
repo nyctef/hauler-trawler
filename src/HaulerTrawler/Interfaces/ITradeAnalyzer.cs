@@ -2,11 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HaulerTrawler.Eve;
 
 namespace HaulerTrawler.Interfaces
 {
     public interface ITradeAnalyzer
     {
-        TradeAnalyzerResult IsGoodTrade(PriceInfo buyPrice, PriceInfo sellPrice, int numJumps);
+        TradeAnalyzerResult IsGoodTrade(TradeInfo trade);
     }
 }

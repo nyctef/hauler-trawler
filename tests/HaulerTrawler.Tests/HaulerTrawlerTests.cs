@@ -5,6 +5,7 @@ using Xunit;
 using FluentAssertions;
 using HaulerTrawler;
 using HaulerTrawler.Interfaces;
+using HaulerTrawler.Eve;
 using Moq;
 
 namespace HaulerTrawler.Tests
@@ -23,7 +24,7 @@ namespace HaulerTrawler.Tests
                         return ssId.Name == "Amarr" ? new PriceInfo(123) : new PriceInfo(456);
                         });
             var tradeAnalyzer = new Mock<ITradeAnalyzer>();
-            tradeAnalyzer.Setup(x => x.IsGoodTrade(It.IsAny<PriceInfo>(), It.IsAny<PriceInfo>(), It.IsAny<int>()))
+            tradeAnalyzer.Setup(x => x.IsGoodTrade(It.IsAny<TradeInfo>()))
                     .Returns(new TradeAnalyzerResult(true));
             var solarSystemFactory = new Mock<ISolarSystemFactory>();
             solarSystemFactory.Setup(x => x.GetSolarSystem(It.IsAny<string>()))

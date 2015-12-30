@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HaulerTrawler.Interfaces;
+using HaulerTrawler.Eve;
 
 namespace HaulerTrawler
 {
@@ -33,7 +34,8 @@ namespace HaulerTrawler
             var amarrPrice = m_PriceChecker.GetPrice(nextTypeId, amarr);
             var jitaPrice = m_PriceChecker.GetPrice(nextTypeId, jita);
             var numJumps = m_SolarSystemRouteFinder.GetNumberOfJumps(amarr, jita);
-            var analyzerResult = m_TradeAnalyzer.IsGoodTrade(amarrPrice, jitaPrice, numJumps);
+            var tradeInfo = new TradeInfo(amarrPrice, jitaPrice, numJumps);
+            var analyzerResult = m_TradeAnalyzer.IsGoodTrade(tradeInfo);
             if (analyzerResult.IsGood)
             {
                 m_Notifier.Notify(string.Format("Trade found! {0}s ({1} {2} -> {3} {4})",
